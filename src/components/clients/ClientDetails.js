@@ -17,8 +17,7 @@ class ClientDetails extends Component {
 	onDeleteClick = () => {
 		const { firestore, client, history } = this.props;
 
-    firestore.delete({ collection: 'clients', doc: client.id })
-      .then(() => history.push('/'));
+		firestore.delete({ collection: 'clients', doc: client.id }).then(() => history.push('/'));
 	};
 
 	onChange = (e) => {
@@ -30,7 +29,7 @@ class ClientDetails extends Component {
 		e.preventDefault();
 
 		const { client, firestore } = this.props;
-		const { balanceUpdateAmount, showBalanceUpdate } = this.state;
+		const { balanceUpdateAmount } = this.state;
 
 		const clientUpdate = {
 			balance: parseFloat(balanceUpdateAmount)
@@ -46,6 +45,9 @@ class ClientDetails extends Component {
 		const { client } = this.props;
 		const { showBalanceUpdate, balanceUpdateAmount } = this.state;
 
+		// will create an form/input to be insert in the UI, so the user can
+		// update client balance without openning the page the user uses to edit
+		// client contact info
 		let balanceForm = '';
 		if (showBalanceUpdate) {
 			balanceForm = (
@@ -124,7 +126,8 @@ class ClientDetails extends Component {
 											</a>
 										</small>
 									</h3>
-									{/* @todo - balance form */}
+                  {/* balance form is appended here when user clicks at the 'pencil' icon. 
+                      And will disapear when button 'Update' is pressed */}
 									{balanceForm}
 								</div>
 							</div>
