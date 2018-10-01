@@ -77,7 +77,7 @@ AppNavbar.propTypes = {
 };
 
 export default compose(
-	firebaseConnect,
+	firebaseConnect(),
 	connect((state, props) => ({
 		auth: state.firebase.auth
 	}))
